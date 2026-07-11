@@ -8,7 +8,7 @@ The application automatically collects attempt data and publishes it to a Google
 
 ```mermaid
 flowchart LR
-    A[🎮 Web Client\nBrowser] -->|JSON Submission| B(🚀 Node/Express\nServer)
+    A[🎮 Web Client\nBrowser] -->|JSON Submission| B(🚀 Cloud Run\nNode/Express Server)
     B -->|Publish Event| C{{☁️ GCP\nPub/Sub}}
     C -->|Direct Ingestion| D[(📊 GCP\nBigQuery)]
     
@@ -92,6 +92,7 @@ gcloud pubsub subscriptions create quiz-events-bq-sub \
 3. Open your browser to `http://localhost:8080`.
 
 ### Containerized Deployment (Single Container)
+For running the container locally:
 Build the Docker image:
 ```bash
 docker build -t data-engineer-quiz .
@@ -105,6 +106,9 @@ docker run -p 8080:8080 \
   -v ~/.config/gcloud:/root/.config/gcloud \
   data-engineer-quiz
 ```
+
+### Google Cloud Run Deployment
+For detailed instructions on setting up Google Cloud IAM permissions and deploying this service in a production-ready serverless environment on Cloud Run, please refer to the [DEPLOY.md](DEPLOY.md) file.
 
 ---
 
