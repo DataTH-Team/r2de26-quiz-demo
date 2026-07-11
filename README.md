@@ -110,6 +110,20 @@ docker run -p 8080:8080 \
 ### Google Cloud Run Deployment
 For detailed instructions on setting up Google Cloud IAM permissions and deploying this service in a production-ready serverless environment on Cloud Run, please refer to the [DEPLOY.md](DEPLOY.md) file.
 
+### 🇹🇭 สรุปขั้นตอนการ Deploy บน Google Cloud Run (ภาษาไทย)
+แอปพลิเคชันนี้โฮสต์อยู่บน Google Cloud Run แบบ Serverless โดยส่งผลคะแนนการทำควิซไปยัง Pub/Sub และไหลเข้าสู่ BigQuery โดยตรง
+
+**ขั้นตอนหลักในการจัดการสิทธิ์และการติดตั้ง:**
+1. **เตรียมโครงการ (GCP Project):** ตั้งค่าโครงการหลัก (`workshop5-demo`) และเปิดระบบชำระเงิน (Billing) ให้เรียบร้อย
+2. **สร้าง Service Account:** ทำการสร้างบัญชีบริการ `quiz-game-runner` เพื่อให้ Cloud Run นำไปใช้เป็นสิทธิ์ประจำตัว (Identity)
+3. **เปิดสิทธิ์การส่งข้อมูล:** ให้สิทธิ์ `roles/pubsub.publisher` (ผู้ส่งข้อมูล Pub/Sub) แก่ Service Account ข้างต้นสำหรับ Topic `quiz-events`
+4. **สร้าง Docker Repository:** สร้างพื้นที่จัดเก็บบน Google Artifact Registry
+5. **Build และติดตั้ง (Deploy):**
+   - คอมไพล์ Docker Image และ Push ขึ้นไปเก็บไว้ที่ Artifact Registry
+   - สั่งติดตั้งขึ้น Cloud Run โดยผูกเข้ากับ Service Account ที่เตรียมไว้ และเปิดสิทธิ์การเข้าถึงแบบสาธารณะ (`--allow-unauthenticated`)
+
+สำหรับคำสั่ง command line ทั้งหมดและรายละเอียดสิทธิ์ IAM สามารถศึกษาต่อได้จากคู่มือ **[DEPLOY.md](DEPLOY.md)**
+
 ---
 
 ## 📊 BigQuery Data Schema

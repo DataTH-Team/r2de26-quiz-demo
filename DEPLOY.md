@@ -190,3 +190,107 @@ To confirm the service is deployed and has the required permissions:
    gcloud run services describe quiz-game-service --region=us-central1
    ```
    Ensure the active service account is `quiz-game-runner` and environment variables `GCP_PROJECT_ID` and `PUBSUB_TOPIC` are set.
+
+---
+
+## 🇹🇭 คู่มือการปรับปรุงและติดตั้งระบบ (Thai Deployment Guide)
+
+คู่มือนี้สรุปขั้นตอนโดยละเอียดการติดตั้งแอปพลิเคชัน RPG Quiz Game บน Google Cloud Run พร้อมการจัดการสิทธิ์การเข้าถึงหัวข้อ Pub/Sub (GCP Pub/Sub) เป็นภาษาไทย
+
+### 1. ตั้งค่าโครงการและเปิดใช้งานระบบชำระเงิน
+ตรวจสอบให้แน่ใจว่าเปิดใช้งานระบบชำระเงิน (Billing Account) ในระบบ และตั้งชื่อโปรเจกต์เป้าหมายป้อนเข้า session ของคุณ
+```bash
+gcloud config set project workshop5-demo
+```
+
+### 2. เปิดใช้งาน API ที่จำเป็น
+รันคำสั่งช่วยเปิดตัวควบคุม API ที่ต้องใช้ในกระบวนการ Build และ Containerization:
+```bash
+gcloud services enable \
+    run.googleapis.com \
+    artifactregistry.googleapis.com \
+    cloudbuild.googleapis.com
+```
+
+### 3. สร้าง Repository บน Artifact Registry
+สำหรับรองรับการเก็บรักษา Docker Image:
+```bash
+gcloud artifacts repositories create quiz-repo \
+    --repository-format=docker \
+    --location=us-central1 \
+    --description="Docker repository for quiz game"
+```
+
+### 4. สร้าง Service Account ของ Cloud Run
+เพื่อใช้เป็นสิทธิ์ในการทำงานของระบบ (Identity Security):
+```bash
+gcloud iam service-accounts create quiz-game-runner \
+    --description="Service account for running the Quiz Game App on Cloud Run" \
+    --display-name="Quiz Game Runner"
+```
+
+### 5. มอบสิทธิ์ในการส่งข้อความ Pub/Sub
+อนุญาติสิทธิ์เฉพาะส่วน `Pub/Sub Publisher` ในการเขียนและส่งข้อมูลผลลัพธ์การควิซไปยัง Topic `quiz-events`:
+```bash
+gcloud pubsub topics add-iam-policy-binding quiz-events \
+    --member="serviceAccount:quiz-game-runner@workshop5-demo.iam.gserviceaccount.com" \
+    --role="roles/pubsub.publisher"
+```
+
+### 6. สร้างและ Deploy คอนเทนเนอร์
+เลือกขั้นตอนวิธี Build & Deploy ได้ตามต้องการ (วิธี ก หรือ วิธี ข):
+
+#### วิธี ก: ใช้ Google Cloud Build (แนะนำ - ไม่ต้องลงโปรแกรม Docker ในเครื่องตัวเอง)
+1. **ทำการส่งโค้ดขึ้นไป Build:**
+   ```bash
+   gcloud builds submit --tag us-central1-docker.pkg.dev/workshop5-demo/quiz-repo/quiz-game:latest
+   ```
+2. **สั่งรันและ Deploy บน Cloud Run:**
+   ```bash
+   gcloud run deploy quiz-game-service \
+       --image=us-central1-docker.pkg.dev/workshop5-demo/quiz-repo/quiz-game:latest \
+       --region=us-central1 \
+       --service-account=quiz-game-runner@workshop5-demo.iam.gserviceaccount.com \
+       --set-env-vars=GCP_PROJECT_ID=workshop5-demo,PUBSUB_TOPIC=quiz-events \
+       --allow-unauthenticated
+   ```
+
+#### วิธี ข: การ Build ในเครื่องของคุณเอง (Local Build & Push)
+1. **ตั้งค่า Docker เพื่อยืนยันตัวตนกับคลาวด์:**
+   ```bash
+   gcloud auth configure-docker us-central1-docker.pkg.dev
+   ```
+2. **Build Docker: Image ในเครื่อง:**
+   ```bash
+   docker build -t quiz-game .
+   ```
+3. **ใส่ Tag และ Push ขึ้นคลาวด์:**
+   ```bash
+   docker tag quiz-game us-central1-docker.pkg.dev/workshop5-demo/quiz-repo/quiz-game:latest
+   docker push us-central1-docker.pkg.dev/workshop5-demo/quiz-repo/quiz-game:latest
+   ```
+4. **สั่งDeploy บน Cloud Run:**
+   ทำตามวิธีเดียวกับคำสั่ง `gcloud run deploy` ใน วิธี ก ข้อ 2
+
+---
+
+### 🔍 รายการตรวจสอบหลังติดตั้ง (Checklist)
+
+1. **ตรวจสอบความถูกต้องของการผูกสิทธิ์บน Pub/Sub:**
+   ```bash
+   gcloud pubsub topics get-iam-policy quiz-events
+   ```
+   *ตรวจสอบให้แน่ใจว่าอีเมล `quiz-game-runner@workshop5-demo.iam.gserviceaccount.com` ได้สิทธิ์ `roles/pubsub.publisher` เรียบร้อยแล้ว*
+
+2. **ตรวจสอบให้แน่ใจว่าเปิดใช้งานแบบสาธารณะ (Allow Unauthorized Traffic):**
+   ```bash
+   gcloud run services describe quiz-game-service --region=us-central1
+   ```
+   *หากแสดงสิทธิ์แบบเป็นส่วนตัว (Private) ให้เปิดสิทธิ์สาธารณะด้วยคำสั่งนี้:*
+   ```bash
+   gcloud run services add-iam-policy-binding quiz-game-service \
+       --region=us-central1 \
+       --member="allUsers" \
+       --role="roles/run.invoker"
+   ```
+
