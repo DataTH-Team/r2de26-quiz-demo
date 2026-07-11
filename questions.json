@@ -3,7 +3,7 @@
     "id": 1,
     "level": 1,
     "category": "SQL & Querying",
-    "question": "Which SQL clause is used to filter rows before grouping them?",
+    "question": "SQL clause ใดที่ใช้ในการกรองข้อมูล (Filter rows) ก่อนที่จะทำการจัดกลุ่ม (Grouping) ข้อมูล?",
     "options": [
       "HAVING",
       "WHERE",
@@ -11,55 +11,55 @@
       "ORDER BY"
     ],
     "answer": "WHERE",
-    "explanation": "'WHERE' filters rows before grouping. 'HAVING' is used to filter groups after they have been created by 'GROUP BY'."
+    "explanation": "'WHERE' ใช้สำหรับกรองข้อมูลแต่ละแถวก่อนที่จะทำการจัดกลุ่ม ส่วน 'HAVING' จะใช้กรองกลุ่มหลังจากที่ผ่านการ 'GROUP BY' แล้ว"
   },
   {
     "id": 2,
     "level": 2,
     "category": "SQL & Querying",
-    "question": "If you perform a LEFT JOIN between Table A (10 rows) and Table B (5 rows), what is the minimum number of rows in the output?",
+    "question": "หากคุณทำ LEFT JOIN ระหว่างตาราง A (มี 10 แถว) และตาราง B (มี 5 แถว) จำนวนแถวขั้นต่ำ (Minimum rows) ที่จะเป็นผลลัพธ์คือเท่าใด?",
     "options": [
-      "5 rows",
-      "10 rows",
-      "15 rows",
-      "0 rows"
+      "5 แถว",
+      "10 แถว",
+      "15 แถว",
+      "0 แถว"
     ],
-    "answer": "10 rows",
-    "explanation": "A LEFT JOIN guarantees that all rows from the left table (Table A) are preserved, so there will be at least 10 rows."
+    "answer": "10 แถว",
+    "explanation": "LEFT JOIN จะรับประกันว่าข้อมูลทุกแถวจากตารางฝั่งซ้าย (ตาราง A) จะถูกดึงมาทั้งหมด ดังนั้นผลลัพธ์จะไม่มีทางน้อยกว่า 10 แถว"
   },
   {
     "id": 3,
     "level": 3,
     "category": "Data Modeling",
-    "question": "In a Dimensional Star Schema, where would you typically store foreign keys and quantitative metrics?",
+    "question": "ในตาราง Star Schema คีย์นอก (Foreign Keys) และตัวชี้วัดเชิงปริมาณ (Quantitative Metrics) มักจะถูกเก็บไว้ที่ตารางใด?",
     "options": [
-      "Dimension Table",
-      "Fact Table",
-      "Lookup Table",
-      "View"
+      "ตารางมิติ (Dimension Table)",
+      "ตารางข้อเท็จจริง (Fact Table)",
+      "ตารางค้นหาข้อมูล (Lookup Table)",
+      "วิวข้อมูล (View)"
     ],
-    "answer": "Fact Table",
-    "explanation": "Fact tables store measurements, metrics, and foreign keys that link to the surrounding dimension tables."
+    "answer": "ตารางข้อเท็จจริง (Fact Table)",
+    "explanation": "Fact Table ใช้สำหรับเก็บค่าตัวเลขที่ใช้วัดผล (Metrics) และเก็บ Foreign Keys ที่เชื่อมโยงไปยัง Dimension Tables ต่างๆ รอบตัว"
   },
   {
     "id": 4,
     "level": 4,
     "category": "Data Modeling",
-    "question": "Why is data denormalization preferred in modern cloud Data Warehouses?",
+    "question": "ทำไมการทำ Denormalization จึงเป็นที่นิยมในระบบ Cloud Data Warehouse สมัยใหม่?",
     "options": [
-      "To minimize storage space",
-      "To reduce query complexity and improve read/analytical performance",
-      "To enforce strict transactional integrity (ACID)",
-      "To prevent duplicate records"
+      "เพื่อลดพื้นที่ในการจัดเก็บข้อมูล",
+      "เพื่อลดความซับซ้อนในการเขียนคิวรีและเพิ่มความเร็วในการอ่านข้อมูล/วิเคราะห์",
+      "เพื่อบังคับใช้กฎ ACID ให้มีความเข้มงวดมากขึ้น",
+      "เพื่อป้องกันไม่ให้เกิดข้อมูลซ้ำซ้อน"
     ],
-    "answer": "To reduce query complexity and improve read/analytical performance",
-    "explanation": "Denormalization reduces the need for expensive JOIN operations, which speeds up analytical queries on distributed cloud data warehouses."
+    "answer": "เพื่อลดความซับซ้อนในการเขียนคิวรีและเพิ่มความเร็วในการอ่านข้อมูล/วิเคราะห์",
+    "explanation": "Denormalization เป็นการรวมตารางเพื่อลดการทำ JOIN ที่มีค่าใช้จ่ายสูง ทำให้คิวรีเพื่อการวิเคราะห์ในระบบประมวลผลแบบกระจายตัวทำงานได้เร็วขึ้นมาก"
   },
   {
     "id": 5,
     "level": 5,
     "category": "ETL Pipelines",
-    "question": "Which processing paradigm extracts data, loads it into the warehouse first, and then performs transformations using the warehouse's compute power?",
+    "question": "กระบวนการประมวลผลข้อมูลแบบใดที่ดึงข้อมูลออกมา แล้วโหลดเข้าสู่คลังข้อมูลก่อน จากนั้นจึงใช้พลังคำนวณของคลังข้อมูลในการแปลงสภาพข้อมูลภายหลัง?",
     "options": [
       "ETL (Extract, Transform, Load)",
       "ELT (Extract, Load, Transform)",
@@ -67,27 +67,27 @@
       "Batch Querying"
     ],
     "answer": "ELT (Extract, Load, Transform)",
-    "explanation": "ELT loads raw data directly into the target system and leverages the scalable compute of modern cloud data warehouses for transformation."
+    "explanation": "ELT โหลดข้อมูลดิบเข้าสู่ระบบปลายทางโดยตรง แล้วใช้ประโยชน์จากระบบคำนวณที่ขยายขนาดได้ง่ายของ Cloud Data Warehouse ในการแปลงสภาพข้อมูล"
   },
   {
     "id": 6,
     "level": 6,
     "category": "ETL Pipelines",
-    "question": "What is the primary benefit of making an ETL pipeline 'idempotent'?",
+    "question": "ประโยชน์หลักของการสร้างไปป์ไลน์ข้อมูลให้มีคุณสมบัติ 'Idempotence' (ทำงานซ้ำได้ผลลัพธ์เท่าเดิม) คืออะไร?",
     "options": [
-      "It runs faster by skipping validation checks",
-      "Running it multiple times with the same input produces the same result, avoiding duplicate data",
-      "It allows concurrent writes to the same database table without locking",
-      "It automatically encrypts sensitive columns"
+      "ทำให้ไปป์ไลน์ทำงานเร็วขึ้นโดยการข้ามขั้นตอนการตรวจสอบ",
+      "การรันไปป์ไลน์หลายๆ ครั้งด้วยข้อมูลชุดเดิม จะได้ผลลัพธ์เหมือนเดิมเสมอ ป้องกันการเกิดข้อมูลซ้ำซ้อน",
+      "ช่วยให้เขียนข้อมูลพร้อมกันลงตารางเดียวกันได้โดยไม่ต้องล็อกตาราง",
+      "ช่วยเข้ารหัสคอลัมน์ที่เป็นความลับโดยอัตโนมัติ"
     ],
-    "answer": "Running it multiple times with the same input produces the same result, avoiding duplicate data",
-    "explanation": "Idempotency ensures that if a pipeline fails halfway and is rerun, it does not create duplicate entries or cause inconsistent data states."
+    "answer": "การรันไปป์ไลน์หลายๆ ครั้งด้วยข้อมูลชุดเดิม จะได้ผลลัพธ์เหมือนเดิมเสมอ ป้องกันการเกิดข้อมูลซ้ำซ้อน",
+    "explanation": "Idempotency ช่วยให้มั่นใจได้ว่า หากไปป์ไลน์หยุดทำงานกลางคันและถูกรันใหม่ จะไม่ทำให้ข้อมูลปลายทางซ้ำซ้อน หรือเกิดข้อผิดพลาดด้านความถูกต้องของข้อมูล"
   },
   {
     "id": 7,
     "level": 7,
     "category": "Streaming & Real-Time",
-    "question": "Which concept describes processing data immediately as it arrives, typically message-by-message, with sub-second latency?",
+    "question": "แนวคิดใดที่อธิบายการประมวลผลข้อมูลในทันทีที่ข้อมูลถูกส่งเข้ามา โดยทั่วไปจะทำแบบทีละข้อความ (Message-by-Message) ด้วยความหน่วงระดับเสี้ยววินาที?",
     "options": [
       "Batch Processing",
       "Micro-batch Processing",
@@ -95,48 +95,48 @@
       "On-demand Querying"
     ],
     "answer": "Stream Processing",
-    "explanation": "Stream processing handles data in real-time, message-by-message, as it is generated, offering minimal latency."
+    "explanation": "Stream Processing จัดการข้อมูลแบบเรียลไทม์ ทีละข้อความเมื่อข้อมูลถูกสร้างขึ้น ทำให้มีความหน่วง (Latency) ในระดับต่ำที่สุด"
   },
   {
     "id": 8,
     "level": 8,
     "category": "Streaming & Real-Time",
-    "question": "In a Pub/Sub messaging system, what does 'At-least-once delivery' guarantee?",
+    "question": "ในระบบการส่งข้อความแบบ Pub/Sub การรับประกันการส่งข้อความแบบ 'At-least-once delivery' หมายถึงอะไร?",
     "options": [
-      "Every message is guaranteed to be delivered exactly once to subscribers",
-      "Messages are guaranteed to be delivered, but duplicates might occasionally occur",
-      "Messages are delivered within a strict, sorted order",
-      "Messages will expire if not consumed within one second"
+      "ทุกๆ ข้อความจะส่งไปยังผู้รับการติดตามเพียงครั้งเดียวอย่างถูกต้องแน่นอน",
+      "รับประกันว่าส่งข้อความถึงแน่นอน แต่อาจเกิดข้อความซ้ำซ้อน (Duplicate) ได้ในบางครั้ง",
+      "ข้อความจะถูกส่งเรียงตามลำดับเวลาที่สร้างขึ้นเสมอ",
+      "ข้อความจะหมดอายุภายในหนึ่งวินาทีหากไม่มีผู้รับไปประมวลผล"
     ],
-    "answer": "Messages are guaranteed to be delivered, but duplicates might occasionally occur",
-    "explanation": "'At-least-once' ensures no messages are lost, but network retries or ack failures can lead to duplicates, which must be handled downstream."
+    "answer": "รับประกันว่าส่งข้อความถึงแน่นอน แต่อาจเกิดข้อความซ้ำซ้อน (Duplicate) ได้ in บางครั้ง",
+    "explanation": "'At-least-once' ยืนยันว่าข้อมูลจะไม่สูญหายระหว่างทาง แต่การลองส่งใหม่เนื่องจากการเชื่อมต่อขัดข้องอาจทำให้ผู้รับได้รับข้อความซ้ำ ซึ่งระบบปลายทางต้องรองรับการจัดการข้อมูลซ้ำนี้"
   },
   {
     "id": 9,
     "level": 9,
     "category": "Data Warehousing",
-    "question": "How does BigQuery 'Clustering' differ from 'Partitioning'?",
+    "question": "การทำ Clustering ของ BigQuery แตกต่างจากการทำ Partitioning อย่างไร?",
     "options": [
-      "Partitioning splits tables into physical segments (e.g. by Date), while Clustering sorts data within those segments based on column values",
-      "Clustering divides tables by date, while Partitioning is only for string columns",
-      "Partitioning is free, while Clustering incurs extra storage costs",
-      "Clustering is done automatically and cannot be configured by the user"
+      "Partitioning แบ่งตารางออกเป็นส่วนๆ (ตามวันที่) ส่วน Clustering จะเรียงลำดับข้อมูลภายในส่วนนั้นๆ ตามคอลัมน์ที่กำหนดเพื่อการคิวรีที่ไวขึ้น",
+      "Clustering แบ่งตารางตามวันที่ ส่วน Partitioning ใช้สำหรับคอลัมน์ประเภทตัวอักษรเท่านั้น",
+      "Partitioning ไม่มีค่าใช้จ่าย ส่วน Clustering มีค่าเก็บข้อมูลเพิ่มเติม",
+      "Clustering จะทำให้โดยอัตโนมัติและไม่สามารถกำหนดเองได้"
     ],
-    "answer": "Partitioning splits tables into physical segments (e.g. by Date), while Clustering sorts data within those segments based on column values",
-    "explanation": "Partitioning divides data into distinct chunks, whereas clustering organizes data based on the sorted values of specified columns for better scan efficiency."
+    "answer": "Partitioning แบ่งตารางออกเป็นส่วนๆ (ตามวันที่) ส่วน Clustering จะเรียงลำดับข้อมูลภายในส่วนนั้นๆ ตามคอลัมน์ที่กำหนดเพื่อการคิวรีที่ไวขึ้น",
+    "explanation": "Partitioning ใช้แยกเก็บข้อมูลออกเป็นส่วนๆ ทางกายภาพ (เช่น ตามวัน) ส่วน Clustering คือการเรียงแถวข้อมูลให้อยู่ใกล้กันตามค่าคอลัมน์เพื่อประหยัดจำนวนข้อมูลที่ต้องสแกน"
   },
   {
     "id": 10,
     "level": 10,
     "category": "Data Architecture",
-    "question": "What is a key defining characteristic of a 'Data Lake' compared to a 'Data Warehouse'?",
+    "question": "ลักษณะสำคัญที่เป็นข้อแตกต่างระหว่าง 'Data Lake' และ 'Data Warehouse' คืออะไร?",
     "options": [
-      "It only stores highly structured SQL data",
-      "It requires schema definition before any data can be written (Schema-on-write)",
-      "It stores diverse, raw data (structured, semi-structured, unstructured) without a predefined schema (Schema-on-read)",
-      "It does not support storage of JSON or CSV files"
+      "Data Lake เก็บเฉพาะข้อมูลที่มีโครงสร้างแบบ SQL เท่านั้น",
+      "Data Lake ต้องกำหนดโครงสร้างข้อมูลก่อนบันทึกเสมอ (Schema-on-write)",
+      "Data Lake เก็บข้อมูลดิบได้หลากหลายรูปแบบ (ทั้งมีโครงสร้าง, กึ่งโครงสร้าง, และไม่มีโครงสร้าง) โดยไม่จำกัดโครงสร้างล่วงหน้า (Schema-on-read)",
+      "Data Lake ไม่รองรับการจัดเก็บไฟล์ประเภท JSON หรือ CSV"
     ],
-    "answer": "It stores diverse, raw data (structured, semi-structured, unstructured) without a predefined schema (Schema-on-read)",
-    "explanation": "Data Lakes store raw files of any format (audio, video, JSON, Parquet) and parse schema details only when the data is queried."
+    "answer": "Data Lake เก็บข้อมูลดิบได้หลากหลายรูปแบบ (ทั้งมีโครงสร้าง, กึ่งโครงสร้าง, และไม่มีโครงสร้าง) โดยไม่จำกัดโครงสร้างล่วงหน้า (Schema-on-read)",
+    "explanation": "Data Lake ออกแบบมาให้รับไฟล์ดิบทุกชนิด (รูปภาพ วิดีโอ JSON ปาร์เกต์) แล้วค่อยแปลงหรืออ่านโครงสร้างเมื่อเรียกใช้งานคิวรี"
   }
 ]

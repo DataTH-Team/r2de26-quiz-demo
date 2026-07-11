@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Engineer Quest: Path of the Rabbit Architect</title>
-  <!-- Google Fonts for RPG Style -->
+  <!-- Google Fonts for RPG Style, Thai & Bai Jamjuree Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+Thai:wght@100..900&family=Outfit:wght@300;400;600;800&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -22,22 +22,22 @@
         <div class="character-preview-box">
           <img src="assets/rabbit_rpg_1.jpg" alt="Novice Rabbit" class="preview-avatar">
           <div class="dialogue-bubble">
-            <p>"H-hello! I want to become a Legendary Data Architect... Will you help me study?"</p>
+            <p>"สวัสดีครับ! ผมอยากเป็น Legendary Data Engineer มาช่วยสอนและผจญภัยไปด้วยกันนะครับ!"</p>
           </div>
         </div>
         
         <form id="start-game-form">
           <div class="form-group">
-            <label for="student-name">Adventurer Name (Name)</label>
+            <label for="student-name">Adventurer Name</label>
             <input type="text" id="student-name" required placeholder="Enter your name..." autocomplete="off">
           </div>
           
           <div class="form-group">
-            <label for="student-id">Adventurer Guild ID (Student ID)</label>
+            <label for="student-id">Student ID</label>
             <input type="text" id="student-id" required placeholder="Enter student ID..." autocomplete="off">
           </div>
           
-          <button type="submit" class="rpg-btn btn-primary">Begin Quest (Level 1)</button>
+          <button type="submit" class="rpg-btn btn-primary">เริ่มผจญภัย (Level 1)</button>
         </form>
       </div>
     </div>
@@ -46,11 +46,11 @@
     <div id="gameplay-screen" class="screen">
       <div class="gameplay-layout">
         
-        <!-- Left Column: Rabbit Status & Evolution -->
+        <!-- Left Column: Rabbit Status & Evolution (Larger Avatar) -->
         <div class="status-panel rpg-card">
           <div class="panel-header">
-            <h3>CHAR STATUS</h3>
-            <span class="status-indicator live">LIVE DATA PIPELINE</span>
+            <h3>STATUS</h3>
+            <span class="status-indicator live">PIPELINE CONNECTED</span>
           </div>
           
           <div class="rabbit-display">
@@ -59,20 +59,40 @@
             </div>
             
             <div id="rabbit-dialogue" class="dialogue-bubble small">
-              <p>"Let's query the database!"</p>
+              <p>"มาเขียนคิวรีคิวใจกันเลยครับ!"</p>
             </div>
           </div>
           
           <div class="stats-box">
             <h2 id="rabbit-class" class="char-class">Novice Database Seeker</h2>
             
+            <!-- Health & Query Power Gamification Bars -->
+            <div class="rpg-status-bars">
+              <div class="rpg-status-row">
+                <span class="bar-label">HP (พลังชีวิต)</span>
+                <div class="progress-bar-container hp-bar">
+                  <div id="player-hp" class="progress-bar red-fill" style="width: 100%"></div>
+                </div>
+                <span id="player-hp-text" class="bar-value vt-font">100/100</span>
+              </div>
+              <div class="rpg-status-row">
+                <span class="bar-label">MP (พลังคิวรี)</span>
+                <div class="progress-bar-container mp-bar">
+                  <div id="player-mp" class="progress-bar blue-fill" style="width: 100%"></div>
+                </div>
+                <span id="player-mp-text" class="bar-value vt-font">100/100</span>
+              </div>
+            </div>
+
+            <div class="stat-divider"></div>
+
             <div class="stat-row">
-              <span class="stat-label">Level:</span>
+              <span class="stat-label">เลเวล (Level):</span>
               <span id="char-level" class="stat-value vt-font">01</span>
             </div>
             
             <div class="stat-row">
-              <span class="stat-label">EXP Progression:</span>
+              <span class="stat-label">EXP สะสม:</span>
               <span id="exp-text" class="stat-value">0/10</span>
             </div>
             
@@ -82,16 +102,27 @@
           </div>
         </div>
         
-        <!-- Right Column: Active Quest (Quiz Questions) -->
+        <!-- Right Column: Active Quest (Quiz Questions + Boss Bar) -->
         <div class="quest-panel rpg-card">
+          <!-- Boss HP Bar -->
+          <div class="boss-panel">
+            <div class="boss-info">
+              <span class="boss-title font-vt">👹 มอนสเตอร์: ข้อมูลดิบที่ยุ่งเหยิง (Raw Data Monster)</span>
+              <span id="boss-hp-text" class="boss-hp-text font-vt">HP: 100/100</span>
+            </div>
+            <div class="progress-bar-container boss-hp-bar">
+              <div id="boss-hp" class="progress-bar purple-fill glow-red" style="width: 100%"></div>
+            </div>
+          </div>
+
           <div class="panel-header">
-            <h3 id="quest-header-title">ACTIVE QUEST: LEVEL 1</h3>
+            <h3 id="quest-header-title">เควสปัจจุบัน: เลเวล 1</h3>
             <span id="quest-category" class="quest-tag">SQL & Querying</span>
           </div>
           
           <div class="quest-content">
             <p id="quest-question" class="question-text">
-              Loading quest details...
+              กำลังโหลดคำถามเวทมนตร์...
             </p>
             
             <div id="quest-options" class="options-grid">
@@ -99,9 +130,17 @@
             </div>
           </div>
           
+          <!-- Battle Log Dialogue / Action Log -->
+          <div class="battle-log">
+            <div class="battle-log-header font-vt">บันทึกการต่อสู้ (BATTLE LOG)</div>
+            <div id="battle-log-content" class="battle-log-content">
+              <!-- Dynamic RPG battle outputs -->
+            </div>
+          </div>
+
           <div class="quest-footer">
-            <span id="quest-tracker">Quest 1 of 10</span>
-            <button id="next-quest-btn" class="rpg-btn btn-secondary disabled" disabled>Submit Answer</button>
+            <span id="quest-tracker">เควสที่ 1 จาก 10</span>
+            <button id="next-quest-btn" class="rpg-btn btn-secondary disabled" disabled>โจมตีด้วยคำตอบ!</button>
           </div>
         </div>
 
@@ -119,41 +158,41 @@
         <div class="victory-layout">
           <div class="final-avatar-box">
             <img id="final-rabbit-avatar" src="assets/rabbit_rpg_5.jpg" alt="Final Evolution">
-            <h3 id="final-rabbit-class" class="char-class">Legendary Data Architect</h3>
-            <p class="level-indicator font-vt">Level 10 (MAX)</p>
+            <h3 id="final-rabbit-class" class="char-class">Legendary Data Engineer</h3>
+            <p class="level-indicator font-vt">เลเวล 10 (MAX)</p>
           </div>
           
           <div class="score-summary-box">
             <h3>GUILD REPORT</h3>
             
             <div class="score-row">
-              <span>Adventurer:</span>
+              <span>Adventurer Name:</span>
               <strong id="summary-name">Fony</strong>
             </div>
             
             <div class="score-row">
-              <span>Guild ID:</span>
+              <span>Student ID:</span>
               <strong id="summary-id">12345</strong>
             </div>
             
             <div class="score-row">
-              <span>Quests Correct:</span>
+              <span>เควสที่สำเร็จ (Correct):</span>
               <strong id="summary-score">8 / 10</strong>
             </div>
             
             <div class="score-row">
-              <span>Accuracy:</span>
+              <span>อัตราความแม่นยำ (Accuracy):</span>
               <strong id="summary-percentage" class="percentage-green">80%</strong>
             </div>
             
             <div class="cloud-sync-status">
               <span class="sync-icon">☁️</span>
-              <span id="sync-text">Publishing data to Cloud Pub/Sub...</span>
+              <span id="sync-text">กำลังส่งบันทึกความดีความชอบขึ้นคลาวด์ผ่าน Cloud Pub/Sub...</span>
             </div>
             
             <div class="victory-actions">
-              <button id="review-logs-btn" class="rpg-btn btn-primary">Review Quest Logs</button>
-              <button id="play-again-btn" class="rpg-btn btn-secondary">Retry Quest</button>
+              <button id="review-logs-btn" class="rpg-btn btn-primary">ดูคัมภีร์เฉลยเควส (Spell Book)</button>
+              <button id="play-again-btn" class="rpg-btn btn-secondary">ท้าทายดันเจี้ยนอีกครั้ง</button>
             </div>
           </div>
         </div>
@@ -164,13 +203,12 @@
     <div id="review-screen" class="screen">
       <div class="rpg-card review-card">
         <div class="panel-header">
-          <h2 class="vt-font">SPELL BOOK: QUEST LOGS</h2>
-          <button id="close-review-btn" class="rpg-btn btn-secondary small">Back to Summary</button>
+          <h2 class="vt-font">คัมภีร์เวทมนตร์: ทบทวนความรู้ (QUEST LOGS)</h2>
+          <button id="close-review-btn" class="rpg-btn btn-secondary small">กลับไปหน้าสรุปผล</button>
         </div>
         
         <p class="review-instructions">
-          Review all 10 Level spells. You can view which answers were correct and read the scrolls of wisdom (explanations).
-          Modify <code class="file-code">questions.json</code> to edit these questions.
+          ทบทวนความรู้ทั้ง 10 เควสหลักที่คุณได้ผ่านมา เพื่อเพิ่มพลังความจำและทักษะ Data Engineer ของตนเอง
         </p>
         
         <div id="review-list" class="review-scroll-container">
