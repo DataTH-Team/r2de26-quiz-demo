@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "level": 1,
+    "category": "SQL & Querying",
+    "question": "Which SQL clause is used to filter rows before grouping them?",
+    "options": [
+      "HAVING",
+      "WHERE",
+      "GROUP BY",
+      "ORDER BY"
+    ],
+    "answer": "WHERE",
+    "explanation": "'WHERE' filters rows before grouping. 'HAVING' is used to filter groups after they have been created by 'GROUP BY'."
+  },
+  {
+    "id": 2,
+    "level": 2,
+    "category": "SQL & Querying",
+    "question": "If you perform a LEFT JOIN between Table A (10 rows) and Table B (5 rows), what is the minimum number of rows in the output?",
+    "options": [
+      "5 rows",
+      "10 rows",
+      "15 rows",
+      "0 rows"
+    ],
+    "answer": "10 rows",
+    "explanation": "A LEFT JOIN guarantees that all rows from the left table (Table A) are preserved, so there will be at least 10 rows."
+  },
+  {
+    "id": 3,
+    "level": 3,
+    "category": "Data Modeling",
+    "question": "In a Dimensional Star Schema, where would you typically store foreign keys and quantitative metrics?",
+    "options": [
+      "Dimension Table",
+      "Fact Table",
+      "Lookup Table",
+      "View"
+    ],
+    "answer": "Fact Table",
+    "explanation": "Fact tables store measurements, metrics, and foreign keys that link to the surrounding dimension tables."
+  },
+  {
+    "id": 4,
+    "level": 4,
+    "category": "Data Modeling",
+    "question": "Why is data denormalization preferred in modern cloud Data Warehouses?",
+    "options": [
+      "To minimize storage space",
+      "To reduce query complexity and improve read/analytical performance",
+      "To enforce strict transactional integrity (ACID)",
+      "To prevent duplicate records"
+    ],
+    "answer": "To reduce query complexity and improve read/analytical performance",
+    "explanation": "Denormalization reduces the need for expensive JOIN operations, which speeds up analytical queries on distributed cloud data warehouses."
+  },
+  {
+    "id": 5,
+    "level": 5,
+    "category": "ETL Pipelines",
+    "question": "Which processing paradigm extracts data, loads it into the warehouse first, and then performs transformations using the warehouse's compute power?",
+    "options": [
+      "ETL (Extract, Transform, Load)",
+      "ELT (Extract, Load, Transform)",
+      "MapReduce",
+      "Batch Querying"
+    ],
+    "answer": "ELT (Extract, Load, Transform)",
+    "explanation": "ELT loads raw data directly into the target system and leverages the scalable compute of modern cloud data warehouses for transformation."
+  },
+  {
+    "id": 6,
+    "level": 6,
+    "category": "ETL Pipelines",
+    "question": "What is the primary benefit of making an ETL pipeline 'idempotent'?",
+    "options": [
+      "It runs faster by skipping validation checks",
+      "Running it multiple times with the same input produces the same result, avoiding duplicate data",
+      "It allows concurrent writes to the same database table without locking",
+      "It automatically encrypts sensitive columns"
+    ],
+    "answer": "Running it multiple times with the same input produces the same result, avoiding duplicate data",
+    "explanation": "Idempotency ensures that if a pipeline fails halfway and is rerun, it does not create duplicate entries or cause inconsistent data states."
+  },
+  {
+    "id": 7,
+    "level": 7,
+    "category": "Streaming & Real-Time",
+    "question": "Which concept describes processing data immediately as it arrives, typically message-by-message, with sub-second latency?",
+    "options": [
+      "Batch Processing",
+      "Micro-batch Processing",
+      "Stream Processing",
+      "On-demand Querying"
+    ],
+    "answer": "Stream Processing",
+    "explanation": "Stream processing handles data in real-time, message-by-message, as it is generated, offering minimal latency."
+  },
+  {
+    "id": 8,
+    "level": 8,
+    "category": "Streaming & Real-Time",
+    "question": "In a Pub/Sub messaging system, what does 'At-least-once delivery' guarantee?",
+    "options": [
+      "Every message is guaranteed to be delivered exactly once to subscribers",
+      "Messages are guaranteed to be delivered, but duplicates might occasionally occur",
+      "Messages are delivered within a strict, sorted order",
+      "Messages will expire if not consumed within one second"
+    ],
+    "answer": "Messages are guaranteed to be delivered, but duplicates might occasionally occur",
+    "explanation": "'At-least-once' ensures no messages are lost, but network retries or ack failures can lead to duplicates, which must be handled downstream."
+  },
+  {
+    "id": 9,
+    "level": 9,
+    "category": "Data Warehousing",
+    "question": "How does BigQuery 'Clustering' differ from 'Partitioning'?",
+    "options": [
+      "Partitioning splits tables into physical segments (e.g. by Date), while Clustering sorts data within those segments based on column values",
+      "Clustering divides tables by date, while Partitioning is only for string columns",
+      "Partitioning is free, while Clustering incurs extra storage costs",
+      "Clustering is done automatically and cannot be configured by the user"
+    ],
+    "answer": "Partitioning splits tables into physical segments (e.g. by Date), while Clustering sorts data within those segments based on column values",
+    "explanation": "Partitioning divides data into distinct chunks, whereas clustering organizes data based on the sorted values of specified columns for better scan efficiency."
+  },
+  {
+    "id": 10,
+    "level": 10,
+    "category": "Data Architecture",
+    "question": "What is a key defining characteristic of a 'Data Lake' compared to a 'Data Warehouse'?",
+    "options": [
+      "It only stores highly structured SQL data",
+      "It requires schema definition before any data can be written (Schema-on-write)",
+      "It stores diverse, raw data (structured, semi-structured, unstructured) without a predefined schema (Schema-on-read)",
+      "It does not support storage of JSON or CSV files"
+    ],
+    "answer": "It stores diverse, raw data (structured, semi-structured, unstructured) without a predefined schema (Schema-on-read)",
+    "explanation": "Data Lakes store raw files of any format (audio, video, JSON, Parquet) and parse schema details only when the data is queried."
+  }
+]

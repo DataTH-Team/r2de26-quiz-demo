@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+setup_gcp.sh
+crop_rabbits.py
+.git
+.gemini
+*.log

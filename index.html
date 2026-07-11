@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Engineer Quest: Path of the Rabbit Architect</title>
+  <!-- Google Fonts for RPG Style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="rpg-container">
+    
+    <!-- Screen 1: Character Creation (Registration) -->
+    <div id="character-creation-screen" class="screen active">
+      <div class="rpg-card creation-card animate-fade-in">
+        <h1 class="game-title">DATA ENGINEER QUEST</h1>
+        <p class="game-subtitle">~ Path of the Rabbit Architect ~</p>
+        
+        <div class="character-preview-box">
+          <img src="assets/rabbit_rpg_1.jpg" alt="Novice Rabbit" class="preview-avatar">
+          <div class="dialogue-bubble">
+            <p>"H-hello! I want to become a Legendary Data Architect... Will you help me study?"</p>
+          </div>
+        </div>
+        
+        <form id="start-game-form">
+          <div class="form-group">
+            <label for="student-name">Adventurer Name (Name)</label>
+            <input type="text" id="student-name" required placeholder="Enter your name..." autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="student-id">Adventurer Guild ID (Student ID)</label>
+            <input type="text" id="student-id" required placeholder="Enter student ID..." autocomplete="off">
+          </div>
+          
+          <button type="submit" class="rpg-btn btn-primary">Begin Quest (Level 1)</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Screen 2: Main Gameplay Screen -->
+    <div id="gameplay-screen" class="screen">
+      <div class="gameplay-layout">
+        
+        <!-- Left Column: Rabbit Status & Evolution -->
+        <div class="status-panel rpg-card">
+          <div class="panel-header">
+            <h3>CHAR STATUS</h3>
+            <span class="status-indicator live">LIVE DATA PIPELINE</span>
+          </div>
+          
+          <div class="rabbit-display">
+            <div class="rabbit-image-wrapper">
+              <img id="rabbit-avatar" src="assets/rabbit_rpg_1.jpg" alt="Rabbit Avatar">
+            </div>
+            
+            <div id="rabbit-dialogue" class="dialogue-bubble small">
+              <p>"Let's query the database!"</p>
+            </div>
+          </div>
+          
+          <div class="stats-box">
+            <h2 id="rabbit-class" class="char-class">Novice Database Seeker</h2>
+            
+            <div class="stat-row">
+              <span class="stat-label">Level:</span>
+              <span id="char-level" class="stat-value vt-font">01</span>
+            </div>
+            
+            <div class="stat-row">
+              <span class="stat-label">EXP Progression:</span>
+              <span id="exp-text" class="stat-value">0/10</span>
+            </div>
+            
+            <div class="progress-bar-container">
+              <div id="exp-bar" class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Column: Active Quest (Quiz Questions) -->
+        <div class="quest-panel rpg-card">
+          <div class="panel-header">
+            <h3 id="quest-header-title">ACTIVE QUEST: LEVEL 1</h3>
+            <span id="quest-category" class="quest-tag">SQL & Querying</span>
+          </div>
+          
+          <div class="quest-content">
+            <p id="quest-question" class="question-text">
+              Loading quest details...
+            </p>
+            
+            <div id="quest-options" class="options-grid">
+              <!-- Options injected here -->
+            </div>
+          </div>
+          
+          <div class="quest-footer">
+            <span id="quest-tracker">Quest 1 of 10</span>
+            <button id="next-quest-btn" class="rpg-btn btn-secondary disabled" disabled>Submit Answer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Screen 3: Victory & Score Summary Screen -->
+    <div id="victory-screen" class="screen">
+      <div class="rpg-card victory-card animate-fade-in">
+        <div class="victory-header">
+          <h1 class="victory-title vt-font">QUEST COMPLETE!</h1>
+          <p class="victory-subtitle">The Rabbit has Evolved!</p>
+        </div>
+        
+        <div class="victory-layout">
+          <div class="final-avatar-box">
+            <img id="final-rabbit-avatar" src="assets/rabbit_rpg_5.jpg" alt="Final Evolution">
+            <h3 id="final-rabbit-class" class="char-class">Legendary Data Architect</h3>
+            <p class="level-indicator font-vt">Level 10 (MAX)</p>
+          </div>
+          
+          <div class="score-summary-box">
+            <h3>GUILD REPORT</h3>
+            
+            <div class="score-row">
+              <span>Adventurer:</span>
+              <strong id="summary-name">Fony</strong>
+            </div>
+            
+            <div class="score-row">
+              <span>Guild ID:</span>
+              <strong id="summary-id">12345</strong>
+            </div>
+            
+            <div class="score-row">
+              <span>Quests Correct:</span>
+              <strong id="summary-score">8 / 10</strong>
+            </div>
+            
+            <div class="score-row">
+              <span>Accuracy:</span>
+              <strong id="summary-percentage" class="percentage-green">80%</strong>
+            </div>
+            
+            <div class="cloud-sync-status">
+              <span class="sync-icon">☁️</span>
+              <span id="sync-text">Publishing data to Cloud Pub/Sub...</span>
+            </div>
+            
+            <div class="victory-actions">
+              <button id="review-logs-btn" class="rpg-btn btn-primary">Review Quest Logs</button>
+              <button id="play-again-btn" class="rpg-btn btn-secondary">Retry Quest</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 4: Spell Book (Review & Questions list) -->
+    <div id="review-screen" class="screen">
+      <div class="rpg-card review-card">
+        <div class="panel-header">
+          <h2 class="vt-font">SPELL BOOK: QUEST LOGS</h2>
+          <button id="close-review-btn" class="rpg-btn btn-secondary small">Back to Summary</button>
+        </div>
+        
+        <p class="review-instructions">
+          Review all 10 Level spells. You can view which answers were correct and read the scrolls of wisdom (explanations).
+          Modify <code class="file-code">questions.json</code> to edit these questions.
+        </p>
+        
+        <div id="review-list" class="review-scroll-container">
+          <!-- Dynamically populated review cards -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

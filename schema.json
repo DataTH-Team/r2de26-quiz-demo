@@ -1,0 +1,50 @@
+[
+  {
+    "name": "session_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Unique quiz attempt session identifier"
+  },
+  {
+    "name": "student_id",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Student registration ID"
+  },
+  {
+    "name": "student_name",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Student display name"
+  },
+  {
+    "name": "score",
+    "type": "INTEGER",
+    "mode": "NULLABLE",
+    "description": "Total number of correct answers"
+  },
+  {
+    "name": "total_questions",
+    "type": "INTEGER",
+    "mode": "NULLABLE",
+    "description": "Total questions evaluated"
+  },
+  {
+    "name": "percentage",
+    "type": "FLOAT",
+    "mode": "NULLABLE",
+    "description": "Accuracy percentage score"
+  },
+  {
+    "name": "submitted_at",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "UTC timestamp of submission"
+  },
+  {
+    "name": "answers_json",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Stringified JSON array of detailed answers"
+  }
+]
